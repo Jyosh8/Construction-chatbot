@@ -1,0 +1,15 @@
+[Start]  
+   ↓  
+[User Sends a Message]  
+   ↓  
+[Preprocessing]  
+   ↓  
+[Intent Matching]  
+   ↓  
+[Decision: Is intent found?]  
+   ├── Yes → [Response Handling (Intent Found)] → [Display Response on UI] → [Decision: Is the conversation over?]  
+   │        ├── Yes → [End]  
+   │        └── No → Loop back to [User Sends a Message]  
+   └── No → [Response Handling (Fallback)] → [Display Response on UI] → [Decision: Is the conversation over?]  
+            ├── Yes → [End]  
+            └── No → Loop back to [User Sends a Message]
