@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative; /* For footer positioning */
+        }
+        .chat-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .chat-box {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-box .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .chat-box .message.user {
+            background-color: #007bff; /* Blue background for user messages */
+            color: #ffffff; /* White text for user messages */
+            margin-left: auto; /* Align to the right */
+        }
+        .chat-box .message.bot {
+            background-color: #f9f9f9; /* Off-white background for bot messages */
+            color: #000000; /* Black text for bot messages */
+            border: 1px solid #ddd; /* Add a border for bot messages */
+            margin-right: auto; /* Align to the left */
+        }
+        .chat-box .conversation-ended {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .chat-box .reconnect {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .chat-input button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+        .emoji-picker {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #emoji-container {
+            display: none;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-box" id="chat-box">
+            <!-- Initial greeting message -->
+            <div class="message bot">Hi, I’m a bot. An AI assistant developed by Shlaghana to help you with questions about this site. What would you like to ask me?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." autofocus>
+            <span class="emoji-picker" onclick="toggleEmojiPicker()">😀</span>
+            <button id="send-button" onclick="sendMessage()">Send</button>
+        </div>
+        <div id="emoji-container">
+            <!-- Emojis will appear here -->
+        </div>
+        <!-- Footer note -->
+        <div class="footer">
+            Developed by Shlaghana | © 2025
+        </div>
+    </div>
+
+    <script>
+        let inactivityTimer;
+        const inactivityDuration = 60000; // 10 seconds
+
+        // Function to reset the inactivity timer
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(endConversation, inactivityDuration);
+        }
+
+        // Function to end the conversation
+        function endConversation() {
+            const chatBox = document.getElementById('chat-box');
+            const timestamp = new Date().toLocaleTimeString();
+            chatBox.innerHTML += `
+                <div class="conversation-ended">Conversation Ended at ${timestamp}</div>
+                <div class="reconnect" onclick="reconnectConversation()">Send Message to Reconnect</div>
+            `;
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }
+
+        // Function to reconnect the conversation
+        function reconnectConversation() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `
+                <div class="message bot">Hi again! How can I assist you?</div>
+            `;
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+            resetInactivityTimer(); // Reset the timer
+        }
+
+        // Function to send a message
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+
+            // Display user message
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user">You: ${userInput}</div>`;
+
+            // Send message to backend
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot response
+                chatBox.innerHTML += `
+                    <div class="message bot">
+                        Bot: ${data.response}
+                    </div>
+                `;
+                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+            })
+            .catch(error => console.error('Error:', error));
+
+            // Clear input
+            document.getElementById('user-input').value = '';
+
+            // Reset the inactivity timer
+            resetInactivityTimer();
+        }
+
+        // Add event listener for the Enter key
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage(); // Call the sendMessage function
+            }
+        });
+
+        // Disable Send button when input is empty
+        document.getElementById('user-input').addEventListener('input', function () {
+            const sendButton = document.getElementById('send-button');
+            sendButton.disabled = this.value.trim() === '';
+        });
+
+        // Emoji picker functionality
+        const emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
+
+        function toggleEmojiPicker() {
+            const emojiContainer = document.getElementById('emoji-container');
+            if (emojiContainer.style.display === 'none') {
+                emojiContainer.style.display = 'block';
+                loadEmojis();
+            } else {
+                emojiContainer.style.display = 'none';
+            }
+        }
+
+        function loadEmojis() {
+            const emojiContainer = document.getElementById('emoji-container');
+            emojiContainer.innerHTML = emojis.map(emoji => `
+                <span style="cursor: pointer; font-size: 20px; margin: 5px;" onclick="insertEmoji('${emoji}')">${emoji}</span>
+            `).join('');
+        }
+
+        function insertEmoji(emoji) {
+            const userInput = document.getElementById('user-input');
+            userInput.value += emoji;
+            userInput.focus();
+        }
+
+        // Start the inactivity timer when the page loads
+        resetInactivityTimer();
+    </script>
+</body>
+</html>
