@@ -1,0 +1,293 @@
+{
+  "intents": [
+    {
+      "tag": "fallback",
+      "patterns": [],  
+      "responses": [
+        "I'm sorry, I didn't understand that. Can you please rephrase?",
+        "I'm not sure I follow. Could you clarify?"
+      ]
+    },
+    {
+      "tag": "greeting",
+      "patterns": ["Hi there", "How are you", "Is anyone there?", "Hey", "Hello", "Good day"],
+      "responses": ["Hello", "Good to see you again", "Hi there, how can I help?"],
+      "context": [""]
+    },
+
+
+    {
+      "tag": "build_new_home",
+      "patterns": [
+        "build a new home", "I want to build a house", "Can you help me build a home?", 
+        "New home construction", "Construct a house", "Build a property", "Create a new home", 
+        "Home building", "I need a new house", "How do I build a home?", "Building a new house", 
+        "Constructing a new home", "I want to construct a house", "Help me build a home"
+      ],
+      "responses": [
+        "We specialize in building new homes! Could you provide details like location, size, and budget so I can assist you better?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "renovation_services",
+      "patterns": [
+        "Do you offer renovation services?", "Can you renovate my home?", "Do you do home renovations?", 
+        "Renovation services", "Home improvement", "House remodeling", "Property renovation", 
+        "Upgrade my home", "I need my house renovated", "Can you help with home upgrades?", 
+        "I want to renovate my property", "Home renovation services", "Remodel my house"
+      ],
+      "responses": [
+        "Yes, we offer renovation services for kitchens, bathrooms, and more. Would you like a free consultation?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "company_services",
+      "patterns": [
+        "Company Services", "What services do you offer?", "Tell me about your services", 
+        "What are your main services?", "What do you provide?", "What can you do?", 
+        "What are your offerings?", "Services provided", "What does your company do?", 
+        "What kind of services do you provide?", "What are your specialties?"
+      ],
+      "responses": [
+        "We offer residential, commercial, renovation, remodeling, and project management services. How can I assist you?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "residential",
+      "patterns": [
+        "Residential", "Do you build homes?", "Can you help with residential projects?", 
+        "Residential construction", "House construction", "Home projects", "Building houses", 
+        "Residential properties", "I need a residential property", "Can you build a house for me?", 
+        "Residential building services", "Constructing a home", "Building a residential property"
+      ],
+      "responses": [
+        "Yes, we handle residential projects, including new homes, renovations, and remodeling. What do you need help with?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "commercial",
+      "patterns": [
+        "Commercial", "Do you work on commercial buildings?", "Can you handle commercial projects?", 
+        "Commercial construction", "Office construction", "Retail spaces", "Business properties", 
+        "Commercial properties", "I need a commercial building", "Can you build an office?", 
+        "Commercial building services", "Constructing a commercial property", "Building a retail space"
+      ],
+      "responses": [
+        "Absolutely! We specialize in commercial projects like offices, retail spaces, and more. Let me know how I can help!"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "renovation",
+      "patterns": [
+        "Renovation", "Can you renovate my property?", "Do you handle renovation projects?", 
+        "Renovation work", "Home improvement", "House upgrades", "Property upgrades", 
+        "Remodeling work", "I need my property renovated", "Can you upgrade my home?", 
+        "Renovation services for homes", "Improving my house", "Upgrading my property"
+      ],
+      "responses": [
+        "Yes, we handle renovation projects for both residential and commercial properties. What type of renovation are you looking for?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "remodeling",
+      "patterns": [
+        "Remodeling", "Can you remodel my home?", "Do you offer remodeling services?", 
+        "Home remodeling", "House remodeling", "Property remodeling", "Home upgrades", 
+        "House upgrades", "I need my house remodeled", "Can you help with home remodeling?", 
+        "Remodeling services for homes", "Improving my house", "Upgrading my home"
+      ],
+      "responses": [
+        "Yes, we provide remodeling services for kitchens, bathrooms, and entire homes. Would you like a free estimate?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "project_management",
+      "patterns": [
+        "Project management", "Do you manage construction projects?", "Can you oversee my project?", 
+        "Project management services", "Construction management", "Project oversight", 
+        "Manage my project", "Supervise construction", "I need project management", 
+        "Can you manage my construction project?", "Project management for construction", 
+        "Overseeing construction projects"
+      ],
+      "responses": [
+        "Yes, we offer full project management services to ensure your project is completed on time and within budget. How can I assist you?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "company_expertise",
+      "patterns": [
+        "Company expertise", "What is your expertise?", "What are you good at?", 
+        "Tell me about your expertise", "What do you specialize in?", "What are your strengths?", 
+        "What is your experience?", "What are your skills?", "What are you known for?", 
+        "What makes your company unique?", "What are your core competencies?"
+      ],
+      "responses": [
+        "We specialize in residential and commercial construction, renovations, remodeling, and project management. Our team has over 30 years of experience!"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "company_portfolio",
+      "patterns": [
+        "Company portfolio", "Can I see your past projects?", "Do you have a portfolio?", 
+        "Show me your work", "Past projects", "Previous work", "Examples of your work", 
+        "Your projects", "What projects have you completed?", "Can you show me your completed work?", 
+        "Examples of your construction projects", "Your construction portfolio"
+      ],
+      "responses": [
+        "You can view our portfolio on our website page. It includes residential, commercial, and renovation projects."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "fee_estimates",
+      "patterns": [
+        "Fee estimates", "How much will it cost?", "Can you give me a quote?", 
+        "What are your fees?", "Cost estimate", "Pricing", "How much do you charge?", 
+        "What is the cost?", "How much does it cost to build a house?", 
+        "Can you provide a cost estimate?", "What are your rates?", "How much for a renovation?"
+      ],
+      "responses": [
+        "Our fees depend on the scope of the project. Could you provide some details so I can give you an accurate estimate?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "project_time",
+      "patterns": [
+        "Time for a project", "How long will it take?", "What is the timeline?", 
+        "When will it be done?", "Project duration", "Completion time", 
+        "How much time is needed?", "When will it finish?", "How long does construction take?", 
+        "What is the estimated completion time?", "How soon can you start?", 
+        "How long for a renovation?"
+      ],
+      "responses": [
+        "The timeline depends on the project size and complexity. Could you share more details so I can provide an estimated completion time?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "license_insured",
+      "patterns": [
+        "Licence insured", "Are you licensed and insured?", "Do you have insurance?", 
+        "Are you certified?", "Licensing", "Insurance coverage", "Are you accredited?", 
+        "Do you have certifications?", "Is your company licensed?", 
+        "Do you have liability insurance?", "Are you bonded and insured?"
+      ],
+      "responses": [
+        "Yes, we are fully licensed and insured. You can view our certifications on our website page."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "contact_details",
+      "patterns": [
+        "Contact details", "How can I contact you?", "What is your phone number?", 
+        "Where can I reach you?", "Contact information", "Your phone number", 
+        "Your email", "How to reach you?", "What’s your contact info?", 
+        "Can I get your contact details?", "How do I get in touch with you?"
+      ],
+      "responses": [
+        "You can reach us at +1234567890 or email us at info@constructioncompany.com."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "careers",
+      "patterns": [
+        "Career or hiring", "Do you have job openings?", "Can I apply for a job?", 
+        "Are you hiring?", "Job opportunities", "Work with you", "Employment", 
+        "Job vacancies", "Are there any job openings?", "Can I work for your company?", 
+        "Do you have any positions available?", "How do I apply for a job?"
+      ],
+      "responses": [
+        "We are currently hiring! Visit our careers page on our website for more details."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks", "Thank you", "That's helpful", "Awesome, thanks", 
+        "Appreciate it", "Thanks a lot", "Thank you so much", "Grateful", 
+        "Thanks for your help", "I appreciate it", "Thank you kindly"
+      ],
+      "responses": [
+        "You're welcome! Let me know if you need anything else."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye", "See you later", "Goodbye", "Nice chatting to you, bye", 
+        "Farewell", "Take care", "See you soon", "Bye for now", 
+        "Goodbye for now", "Catch you later", "Have a great day"
+      ],
+      "responses": [
+        "Goodbye! Feel free to reach out if you have more questions."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "projects",
+      "patterns": [
+        "Projects", "What projects have you done?", "Can you show me your projects?", 
+        "Past projects", "Previous work", "Examples of your work", 
+        "Your portfolio", "Completed projects", "What have you built?", 
+        "Can I see your completed projects?", "What kind of projects do you handle?"
+      ],
+      "responses": [
+        "We’ve worked on a variety of projects, including residential homes, commercial buildings, and renovations. Check out our portfolio on our website page."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "company_info",
+      "patterns": [
+        "Company info", "Tell me about your company", "What is your company history?", 
+        "Who are you?", "About your company", "Company background", 
+        "Your history", "Tell me about your business", "What does your company do?", 
+        "Can you tell me more about your company?", "What is your company’s story?"
+      ],
+      "responses": [
+        "We are a construction company with over 30 years of experience, specializing in residential, commercial, and renovation projects."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "testimonials",
+      "patterns": [
+        "Testimonials", "What do clients say about you?", "Can I see reviews?", 
+        "Client feedback", "Customer reviews", "What are people saying?", 
+        "Client opinions", "Feedback from clients", "What do your clients think?", 
+        "Can I read your testimonials?", "What are your clients saying about you?"
+      ],
+      "responses": [
+        "Our clients love our work! Check out their testimonials on our website page."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "safety",
+      "patterns": [
+        "Safety", "How do you ensure safety?", "What safety measures do you follow?", 
+        "Tell me about safety protocols", "Safety standards", "Workplace safety", 
+        "Construction safety", "Safety precautions", "How do you keep workers safe?", 
+        "What are your safety policies?", "Do you follow safety regulations?"
+      ],
+      "responses": [
+        "We follow strict safety protocols, including regular inspections, safety gear, and training programs to ensure a safe work environment."
+      ],
+      "context": [""]
+    }
+  ]
+}
