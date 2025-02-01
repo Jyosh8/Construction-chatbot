@@ -4,7 +4,7 @@
       "tag": "fallback",
       "patterns": [],  
       "responses": [
-        "I'm sorry, I didn't understand that. Can you please rephrase?",
+        "I'm sorry., I didn't understand that. Can you please rephrase?",
         "I'm not sure I follow. Could you clarify?"
       ]
     },
